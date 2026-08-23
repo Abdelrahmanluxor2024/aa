@@ -3,42 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>???? ????? ???????</title>
+  <title>عرض فيديو احترافي</title>
   
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     
     body {
-      background: #0f172a;
+      background-color: #f0f2f5;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
       padding: 20px;
-      font-family: system-ui, sans-serif;
     }
     
+    /* الحاوية الخارجية (الكارت الأبيض) */
     .video-card {
       width: 100%;
       max-width: 850px;
-      background: #1e293b;
-      border-radius: 16px;
+      background: #ffffff;
+      border-radius: 20px;
       padding: 15px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
     }
     
-    /* ????? ??????? ?????? ????? ???? ?? */
-    .video-container {
+    /* حاوية الفيديو لضبط الأبعاد والحواف الدائرية */
+    .video-wrapper {
       position: relative;
       width: 100%;
-      padding-bottom: 56.25%; /* ???? 16:9 ??????? */
+      padding-bottom: 56.25%; /* نسبة 16:9 */
       height: 0;
-      border-radius: 12px;
+      border-radius: 15px;
       overflow: hidden;
       background: #000;
     }
     
-    .video-container iframe {
+    .video-wrapper iframe {
       position: absolute;
       top: 0;
       left: 0;
@@ -47,70 +52,42 @@
       border: 0;
     }
     
-    /* ?????? ?????? ??? ??????? */
-    .video-cover {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-size: cover;
-      background-position: center;
+    /* العنوان والبيانات أسفل الفيديو (مثل صورتك) */
+    .video-footer {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
+      margin-top: 15px;
+      padding: 5px 10px;
+    }
+    
+    .video-title {
+      font-size: 22px;
+      font-weight: bold;
+      color: #1a0dab; /* لون أزرق احترافي */
+    }
+    
+    .share-icon {
+      color: #5f6368;
       cursor: pointer;
-      z-index: 10;
-      transition: opacity 0.3s;
-    }
-    
-    .play-btn {
-      width: 70px;
-      height: 70px;
-      background: rgba(37, 99, 235, 0.9);
-      border-radius: 50%;
       display: flex;
-      justify-content: center;
       align-items: center;
-      box-shadow: 0 0 30px rgba(37, 99, 235, 0.6);
-      transition: transform 0.2s;
     }
     
-    .video-cover:hover .play-btn {
-      transform: scale(1.1);
-      background: #2563eb;
-    }
-    
-    .play-btn svg {
-      width: 28px;
-      height: 28px;
-      fill: #fff;
-      margin-left: 3px;
+    .share-icon svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
     }
   </style>
 </head>
 <body>
 
   <div class="video-card">
-    <div class="video-container" id="videoContainer">
-      
-      <!-- ?????? ?????? (???? ??????? ?? ?? ???????) -->
-      <div class="video-cover" id="videoCover" style="background-image: url('https://img.youtube.com/vi/zvxwARJRspn7Wu-g/maxresdefault.jpg');" onclick="playVideo()">
-        <div class="play-btn">
-          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-
-  <script>
-    function playVideo() {
-      var container = document.getElementById('videoContainer');
-      // ??? ????? ??? ????? ?????? ??????? ?????
-      container.innerHTML = `<iframe src="https://youtu.be/LMvscpZfaYs?si=zvxwARJRspn7Wu-g?autoplay=1&rel=0&modestbranding=1" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
-    }
-  </script>
-
-</body>
-</html>
+    
+    <!-- منطقة الفيديو -->
+    <div class="video-wrapper">
+      <iframe 
+        src="https://www.youtube-nocookie.com/embed/LMvscpZfaYs?rel=0&modestbranding=1&iv_load_policy=3" 
+        title="YouTube video player" 
+        allow="accelerometer; 
