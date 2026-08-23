@@ -3,99 +3,113 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>???? ??????? ???? ??????</title>
-  
-  <!-- ??? ????? Plyr -->
-  <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+  <title>???? ????? ???????</title>
   
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     
     body {
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      background: #0f172a;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
       padding: 20px;
+      font-family: system-ui, sans-serif;
     }
     
-    .container {
+    .video-card {
       width: 100%;
-      max-width: 900px;
-      background: white;
-      border-radius: 15px;
-      padding: 25px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      max-width: 850px;
+      background: #1e293b;
+      border-radius: 16px;
+      padding: 15px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
     }
     
-    h1 {
-      color: #1e3c72;
-      text-align: center;
-      margin-bottom: 20px;
-      font-size: 24px;
-    }
-    
-    /* ??????? ???????? ?? ?? ?????? ??????? */
-    .video-wrapper {
+    /* ????? ??????? ?????? ????? ???? ?? */
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* ???? 16:9 ??????? */
+      height: 0;
       border-radius: 12px;
       overflow: hidden;
-      position: relative;
       background: #000;
     }
-
-    /* ?? ???? ?? ???? ?????? ??????? ???????? */
-    .plyr__video-embed iframe {
-      transform: scale(1.35) !important; /* ????? ??????? ?????? ???? ?????? */
-      top: -10% !important; /* ????? ???????? ??????? ????? ?????? */
+    
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
     }
-
-    /* ????? ??? Plyr */
-    :root {
-      --plyr-color-main: #1e3c72;
+    
+    /* ?????? ?????? ??? ??????? */
+    .video-cover {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: opacity 0.3s;
+    }
+    
+    .play-btn {
+      width: 70px;
+      height: 70px;
+      background: rgba(37, 99, 235, 0.9);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 30px rgba(37, 99, 235, 0.6);
+      transition: transform 0.2s;
+    }
+    
+    .video-cover:hover .play-btn {
+      transform: scale(1.1);
+      background: #2563eb;
+    }
+    
+    .play-btn svg {
+      width: 28px;
+      height: 28px;
+      fill: #fff;
+      margin-left: 3px;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <h1>?? ???? ??????? ????</h1>
-    
-    <div class="video-wrapper">
-      <div id="player" data-plyr-provider="youtube" data-plyr-embed-id="vQggZQcdWYE"></div>
+  <div class="video-card">
+    <div class="video-container" id="videoContainer">
+      
+      <!-- ?????? ?????? (???? ??????? ?? ?? ???????) -->
+      <div class="video-cover" id="videoCover" style="background-image: url('https://img.youtube.com/vi/vQggZQcdWYE/maxresdefault.jpg');" onclick="playVideo()">
+        <div class="play-btn">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+      
     </div>
   </div>
 
-  <!-- ????? Plyr -->
-  <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
   <script>
-    const player = new Plyr('#player', {
-      controls: [
-        'play-large',
-        'play',
-        'progress',
-        'current-time',
-        'duration',
-        'mute',
-        'volume',
-        'settings',
-        'fullscreen'
-      ],
-      settings: ['speed'],
-      youtube: {
-        noCookie: true,
-        rel: 0,
-        showinfo: 0,
-        iv_load_policy: 3,
-        modestbranding: 1
-      },
-      ratio: '16:9'
-    });
+    function playVideo() {
+      var container = document.getElementById('videoContainer');
+      // ??? ????? ??? ????? ?????? ??????? ?????
+      container.innerHTML = `<iframe src="https://www.youtube.com/embed/vQggZQcdWYE?autoplay=1&rel=0&modestbranding=1" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+    }
   </script>
 
 </body>
